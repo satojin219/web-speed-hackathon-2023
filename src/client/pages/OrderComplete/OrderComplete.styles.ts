@@ -21,6 +21,8 @@ export const noticeDescriptionWrapper = () => css`
   display: grid;
   height: 100%;
   place-items: center;
+  aspect-ratio: 2/1;
+  position: relative;
 `;
 
 export const noticeDescription = () => css`

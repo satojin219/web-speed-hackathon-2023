@@ -34,6 +34,7 @@ export const itemInner = () => css`
 `;
 
 export const thumbnail = () => css`
+  aspect-ratio: 16/9;
   border-radius: 8px;
   overflow: hidden;
   position: relative;

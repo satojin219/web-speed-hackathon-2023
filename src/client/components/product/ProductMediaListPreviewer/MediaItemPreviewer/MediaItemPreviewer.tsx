@@ -10,14 +10,15 @@ import * as styles from './MediaItemPreiewer.styles';
 
 type Props = {
   file: MediaFileFragmentResponse;
+  className?: string;
 };
 
-export const MediaItemPreviewer: FC<Props> = ({ file }) => {
+export const MediaItemPreviewer: FC<Props> = ({ className,file }) => {
   const type = getMediaType(file.filename);
 
   return (
     <div className={styles.container()}>
-      {type === 'image' && <Image fill src={file.filename.replace('jpg', 'avif')} />}
+      {type === 'image' && <Image fill className={className} src={file.filename.replace('jpg', 'avif')} />}
       {type === 'video' && (
         <GetDeviceType>
           {({ deviceType }) => (
@@ -30,7 +31,7 @@ export const MediaItemPreviewer: FC<Props> = ({ file }) => {
                 [styles.video__desktop()]: deviceType === DeviceType.DESKTOP,
                 [styles.video__mobile()]: deviceType === DeviceType.MOBILE,
               })}
-              src={file.filename.replace("mp4","webm")}
+              src={file.filename.replace('mp4', 'webm')}
             />
           )}
         </GetDeviceType>

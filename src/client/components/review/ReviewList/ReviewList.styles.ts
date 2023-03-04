@@ -13,6 +13,8 @@ export const item = () => css`
 `;
 
 export const avaterImage = () => css`
+  position: relative;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
 `;
