@@ -19,7 +19,7 @@ const getPublicFileList = async (targetPath: string) => {
   return publicFiles;
 };
 
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(async () => {
   const videos = await getPublicFileList(path.resolve(publicDir, 'videos'));
 
   return {
@@ -33,7 +33,7 @@ export default defineConfig(async ({ mode }) => {
           experimentalMinChunkSize: 40960,
         },
         plugins: [
-          mode === 'analyze' &&
+         
             visualizer({
               brotliSize: true,
               filename: 'dist/stats.html',

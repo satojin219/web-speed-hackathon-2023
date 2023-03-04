@@ -2,7 +2,6 @@ import type { FC } from 'react';
 import { memo } from 'react';
 
 import type { ProductFragmentResponse } from '../../../graphql/fragments';
-import { Icon } from '../../foundation/Icon';
 import { OutlineButton } from '../../foundation/OutlineButton';
 import { PrimaryAnchor } from '../../foundation/PrimaryAnchor';
 import { PrimaryButton } from '../../foundation/PrimaryButton';
@@ -50,7 +49,7 @@ export const ProductPurchaseSection: FC<Props> = memo(
       <div className={styles.container()}>
         <p className={styles.amount()}>
           <span className={styles.checkIcon()}>
-            <Icon color="#3BA175" height={18} type="FaCheckCircle" width={18} />
+            <img alt="チェックサークル" height={20} loading="lazy" src="/icons/circle-check-solid.svg" width={20} />
           </span>
           <span>{amountInCart}個 カートに追加済み</span>
         </p>
