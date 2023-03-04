@@ -48,7 +48,6 @@ specifiers:
   koa-send: 5.0.1
   koa-session: 6.4.0
   koa-static: 5.0.0
-  modern-css-reset: 1.4.0
   nodemon: 2.0.20
   npm-run-all: 4.1.5
   postcss: 8.4.21
@@ -106,7 +105,6 @@ dependencies:
   koa-send: 5.0.1
   koa-session: 6.4.0
   koa-static: 5.0.0
-  modern-css-reset: 1.4.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-error-boundary: 3.1.4_react@18.2.0
@@ -4773,10 +4771,6 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
-    dev: false
-
-  /modern-css-reset/1.4.0:
-    resolution: {integrity: sha512-0crZmSFmrxkI7159rvQWjpDhy0u4+Awg/iOycJdlVn0RSeft/a+6BrQHR3IqvmdK25sqt0o6Z5Ap7cWgUee2rw==}
     dev: false
 
   /ms/2.0.0:

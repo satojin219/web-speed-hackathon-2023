@@ -1,8 +1,6 @@
 import { injectGlobal as css } from '@emotion/css';
-import resetCssText from 'modern-css-reset/src/reset.css?raw';
 
 export const injectGlobalStyle = () => css`
-  ${resetCssText}
 
   ul, ol {
     list-style: none;
