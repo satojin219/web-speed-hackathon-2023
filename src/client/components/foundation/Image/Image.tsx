@@ -6,15 +6,20 @@ import * as styles from './Image.styles';
 type Props = Omit<ComponentProps<'img'>, 'className'> & {
   className?: string;
   fill?: boolean;
+  loading?:string
 };
 
-export const Image: FC<Props> = ({ className,fill, ...rest }) => {
+export const Image: FC<Props> = ({ className, fill, loading = 'lazy', ...rest }) => {
   return (
     <img
-      className={classNames(styles.container(), {
-        [styles.container__fill()]: fill === true,
-      },className)}
-      loading="lazy"
+      className={classNames(
+        styles.container(),
+        {
+          [styles.container__fill()]: fill === true,
+        },
+        className,
+      )}
+      loading={loading}
       {...rest}
     />
   );
