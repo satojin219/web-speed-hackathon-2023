@@ -14,6 +14,7 @@ export function useActiveOffer(product: ProductFragmentResponse | undefined) {
       }
 
       const offer = getActiveOffer(product.offers);
+
       setActiveOffer(offer);
     }, 0);
 

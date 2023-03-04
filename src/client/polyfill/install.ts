@@ -1,7 +1,4 @@
-import 'core-js';
-import 'date-time-format-timezone';
 import 'setimmediate';
-import './temporal';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

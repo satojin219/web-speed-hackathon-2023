@@ -1,7 +1,9 @@
 import path from 'node:path';
 
-import { Temporal } from '@js-temporal/polyfill';
 import * as bcrypt from 'bcrypt';
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 
 import { FeatureItem } from '../src/model/feature_item';
 import { FeatureSection } from '../src/model/feature_section';
@@ -21,10 +23,11 @@ import { DATABASE_SEED_PATH } from '../src/server/utils/database_paths';
 import { hakusai, kyuri } from './aozora';
 import { getFileList } from './get_file_list';
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 const TZ = process.env.TZ ?? 'Asia/Tokyo';
-const BASE_DATE = process.env.SEED_BASE_UNIXTIME
-  ? Temporal.Instant.fromEpochMilliseconds(Number(process.env.SEED_BASE_UNIXTIME))
-  : Temporal.Now.instant();
+const BASE_DATE = dayjs();
 
 const familyNames = [
   { display: '宮森', name: 'miyamori' },
@@ -231,18 +234,16 @@ async function seedProducts({ mediaList }: { mediaList: MediaFile[] }): Promise<
         if (index % 3 === 0) {
           const offerHour = index % 24;
           for (let offset = -10; offset <= 10; offset++) {
-            const startDate = BASE_DATE.toZonedDateTimeISO(TZ).add({ days: offset }).withPlainTime({
-              hour: offerHour,
-              minute: 0,
-              second: 0,
-            });
-            const endDate = startDate.add({ hours: 2 });
+            const startDate = BASE_DATE.add(offset, 'd').hour(offerHour).startOf('hour');
+            console.log('seed call startDate', startDate);
+
+            const endDate = startDate.add(2, 'h');
             const discountRate = discountRates[(index + Math.abs(offset)) % discountRates.length];
 
             const offer = new LimitedTimeOffer();
             offer.product = product;
-            offer.startDate = startDate.toInstant().toString({ timeZone: Temporal.TimeZone.from('UTC') });
-            offer.endDate = endDate.toInstant().toString({ timeZone: Temporal.TimeZone.from('UTC') });
+            offer.startDate = startDate.format();
+            offer.endDate = endDate.format();
             offer.price = Math.floor(product.price * (1 - discountRate));
             offers.push(offer);
           }
@@ -304,17 +305,13 @@ async function seedReviews({ products, users }: { users: User[]; products: Produ
     }
   }
 
-  const START_OF_LAST_YEAR = BASE_DATE.toZonedDateTimeISO(TZ)
-    .subtract({ years: 1 })
-    .with({ day: 1, month: 1 })
-    .withPlainTime();
-  const duration = BASE_DATE.since(START_OF_LAST_YEAR.toInstant()).round('second').total('second');
+  const START_OF_LAST_YEAR = BASE_DATE
+    .subtract(1, 'y').startOf('month');
+  const duration = BASE_DATE.diff(START_OF_LAST_YEAR.startOf('second'))
   const interval = Math.floor(duration / reviews.length);
 
   reviews.forEach((review, index) => {
-    const postedAt = START_OF_LAST_YEAR.add({ seconds: interval * index })
-      .toInstant()
-      .toString({ timeZone: Temporal.TimeZone.from('UTC') });
+    const postedAt = START_OF_LAST_YEAR.add(interval * index ,'s').format()
     review.postedAt = postedAt;
   });
 
