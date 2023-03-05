@@ -15,6 +15,8 @@ export const inner = () => css`
 export const mainParagraph = () => css`
   color: #222222;
   font-family: 'Noto Serif JP', sans-serif;
+  font-display: swap;
+
   font-size: 1.5rem;
   font-weight: 700;
 `;
@@ -22,5 +24,7 @@ export const mainParagraph = () => css`
 export const subParagraph = () => css`
   color: #222222;
   font-family: 'Noto Serif JP', sans-serif;
+  font-display: swap;
+
   font-size: 0.875rem;
 `;

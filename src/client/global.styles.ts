@@ -1,8 +1,8 @@
 import { injectGlobal as css } from '@emotion/css';
 
 export const injectGlobalStyle = () => css`
-
-  ul, ol {
+  ul,
+  ol {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -10,6 +10,7 @@ export const injectGlobalStyle = () => css`
 
   body {
     font-family: sans-serif;
+    font-display: swap;
   }
 
   button {
