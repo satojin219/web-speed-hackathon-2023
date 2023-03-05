@@ -13,12 +13,11 @@ type Props = {
   className?: string;
 };
 
-export const MediaItemPreviewer: FC<Props> = ({ className,file }) => {
+export const MediaItemPreviewer: FC<Props> = ({ file }) => {
   const type = getMediaType(file.filename);
-
   return (
     <div className={styles.container()}>
-      {type === 'image' && <Image fill className={className} src={file.filename.replace('jpg', 'avif')} />}
+      {type === 'image' && <Image fill src={file.filename.replace('jpg', 'avif')} />}
       {type === 'video' && (
         <GetDeviceType>
           {({ deviceType }) => (

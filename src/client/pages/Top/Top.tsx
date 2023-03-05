@@ -24,17 +24,25 @@ export const Top: FC = () => {
       </Helmet>
       <Layout>
         <div>
-          <ProductHeroImage product={recommendation.product} title="今週のオススメ" />
+          {recommendation ? (
+            <ProductHeroImage product={recommendation.product} title="今週のオススメ" />
+          ) : (
+            <div style={{ height: '576px;' }}></div>
+          )}
 
           <div className={styles.featureList()}>
-            {features.map((featureSection) => {
-              return (
-                <div key={featureSection.id} className={styles.feature()}>
-                  <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
-                  <ProductList featureSection={featureSection} />
-                </div>
-              );
-            })}
+            {features ? (
+              features.map((featureSection) => {
+                return (
+                  <div key={featureSection.id} className={styles.feature()}>
+                    <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
+                    <ProductList featureSection={featureSection} />
+                  </div>
+                );
+              })
+            ) : (
+              <div style={{ height: '4714px;' }}></div>
+            )}
           </div>
         </div>
       </Layout>

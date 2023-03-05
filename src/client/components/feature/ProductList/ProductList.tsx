@@ -12,19 +12,21 @@ type Props = {
 
 export const ProductList: FC<Props> = memo(({ featureSection }) => {
   return (
-    <GetDeviceType>
-      {({ deviceType }) => {
-        switch (deviceType) {
-          case DeviceType.DESKTOP: {
-            return <ProductListSlider featureSection={featureSection} />;
+    <div style={{ height: '350px' }}>
+      <GetDeviceType>
+        {({ deviceType }) => {
+          switch (deviceType) {
+            case DeviceType.DESKTOP: {
+              return <ProductListSlider featureSection={featureSection} />;
+            }
+            case DeviceType.MOBILE: {
+              return <ProductGridList featureSection={featureSection} />;
+            }
           }
-          case DeviceType.MOBILE: {
-            return <ProductGridList featureSection={featureSection} />;
-          }
-        }
-      }}
-    </GetDeviceType>
+        }}
+      </GetDeviceType>
+    </div>
   );
-});
+},);
 
 ProductList.displayName = 'ProductList';

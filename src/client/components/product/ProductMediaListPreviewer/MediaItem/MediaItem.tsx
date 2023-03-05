@@ -29,9 +29,9 @@ export const MediaItem: FC<Props> = ({ file }) => {
 
   return (
     <div className={styles.container()}>
-      <Image fill loading='eager'  src={imageSrc.replace('jpg', 'avif')} />
+      <Image fill height={40} loading="eager" src={imageSrc.includes("jpg") ? imageSrc.replace('jpg', 'avif'): imageSrc} width={40} />
       {mediaType === 'video' && (
-        <div  className={styles.playIcon()}>
+        <div className={styles.playIcon()}>
           <img alt="プレイ" height={16} loading="lazy" src="/icons/play-solid.svg" width={16} />
         </div>
       )}
