@@ -14,9 +14,6 @@ import * as styles from './SignInModal.styles';
 const NOT_INCLUDED_AT_CHAR_REGEX = /^(?:[^@]*){6,}$/;
 const NOT_INCLUDED_SYMBOL_CHARS_REGEX = /^(?:(?:[a-zA-Z0-9]*){2,})+$/;
 
-const emailReg = new RegExp(NOT_INCLUDED_AT_CHAR_REGEX);
-const passwordReg = new RegExp(NOT_INCLUDED_SYMBOL_CHARS_REGEX);
-
 export type SignInForm = {
   email: string;
   password: string;
@@ -52,10 +49,10 @@ export const SignInModal: FC = () => {
     },
     validate(values) {
       const errors: FormikErrors<SignInForm> = {};
-      if (values.email != '' && !emailReg.exec(values.email)) {
+      if (values.email != '' && NOT_INCLUDED_AT_CHAR_REGEX.test(values.email)) {
         errors['email'] = 'メールアドレスの形式が間違っています';
       }
-      if (values.password != '' && !passwordReg.exec(values.password)) {
+      if (values.password != '' && NOT_INCLUDED_SYMBOL_CHARS_REGEX.test(values.password)) {
         errors['password'] = '英数字以外の文字を含めてください';
       }
       return errors;
