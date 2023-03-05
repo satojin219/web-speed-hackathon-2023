@@ -34,12 +34,12 @@ export default defineConfig(async () => {
         },
         plugins: [
          
-            visualizer({
-              brotliSize: true,
-              filename: 'dist/stats.html',
-              gzipSize: true,
-              open: true,
-            }),
+            // visualizer({
+            //   brotliSize: true,
+            //   filename: 'dist/stats.html',
+            //   gzipSize: true,
+            //   open: true,
+            // }),
         ],
       },
       target: 'es2015',

@@ -24,7 +24,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
       <div className={styles.inner()}>
         {thumbnailFile ? (
           <div className={styles.image()} >
-              <Image  height={126} src={thumbnailFile.filename.replace('jpg', 'avif')} width={224} />
+              <Image  height={126} src={thumbnailFile.filename.replace('jpg', 'avif').replace('products',"products-small")} width={224} />
           </div>
         ) : null}
         <div className={styles.description()}>

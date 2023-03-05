@@ -29,10 +29,10 @@ export const MediaItem: FC<Props> = ({ file }) => {
 
   return (
     <div className={styles.container()}>
-      <Image fill height={40} loading="eager" src={imageSrc.includes("jpg") ? imageSrc.replace('jpg', 'avif'): imageSrc} width={40} />
+      <Image fill height={40} loading="eager" src={imageSrc.includes("jpg") ? imageSrc.replace('jpg', 'avif').replace("products","products-small"): imageSrc} width={40} />
       {mediaType === 'video' && (
         <div className={styles.playIcon()}>
-          <img alt="プレイ" height={16} loading="lazy" src="/icons/play-solid.svg" width={16} />
+          <img alt="プレイ" height={16} loading="eager" src="/icons/play-solid.svg" width={16} />
         </div>
       )}
     </div>
